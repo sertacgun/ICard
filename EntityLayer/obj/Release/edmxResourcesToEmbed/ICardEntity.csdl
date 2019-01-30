@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="iKartvizitModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="iKartvizitEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__MigrationHistory" EntityType="iKartvizitModel.C__MigrationHistory" />
+    <EntitySet Name="AspNetRoles" EntityType="iKartvizitModel.AspNetRoles" />
+    <EntitySet Name="AspNetUserClaims" EntityType="iKartvizitModel.AspNetUserClaims" />
+    <EntitySet Name="AspNetUserLogins" EntityType="iKartvizitModel.AspNetUserLogins" />
+    <EntitySet Name="AspNetUsers" EntityType="iKartvizitModel.AspNetUsers" />
+    <EntitySet Name="Banka" EntityType="iKartvizitModel.Banka" />
+    <EntitySet Name="Ekstra" EntityType="iKartvizitModel.Ekstra" />
+    <EntitySet Name="Firmalar" EntityType="iKartvizitModel.Firmalar" />
+    <EntitySet Name="Iletisim" EntityType="iKartvizitModel.Iletisim" />
+    <EntitySet Name="sysdiagrams" EntityType="iKartvizitModel.sysdiagrams" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="iKartvizitModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="iKartvizitModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Firmalar_AspNetUsers" Association="iKartvizitModel.FK_Firmalar_AspNetUsers">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Firmalar" EntitySet="Firmalar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Banka_Firmalar" Association="iKartvizitModel.FK_Banka_Firmalar">
+      <End Role="Firmalar" EntitySet="Firmalar" />
+      <End Role="Banka" EntitySet="Banka" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Ekstra_Firmalar" Association="iKartvizitModel.FK_Ekstra_Firmalar">
+      <End Role="Firmalar" EntitySet="Firmalar" />
+      <End Role="Ekstra" EntitySet="Ekstra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Iletisim_Firmalar" Association="iKartvizitModel.FK_Iletisim_Firmalar">
+      <End Role="Firmalar" EntitySet="Firmalar" />
+      <End Role="Iletisim" EntitySet="Iletisim" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="iKartvizitModel.AspNetUserRoles">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="iKartvizitModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="iKartvizitModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="iKartvizitModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="iKartvizitModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="iKartvizitModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+    <NavigationProperty Name="Firmalar" Relationship="iKartvizitModel.FK_Firmalar_AspNetUsers" FromRole="AspNetUsers" ToRole="Firmalar" />
+    <NavigationProperty Name="AspNetRoles" Relationship="iKartvizitModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+  </EntityType>
+  <EntityType Name="Banka">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Iban" Type="String" MaxLength="29" FixedLength="false" Unicode="true" />
+    <Property Name="SubeKodu" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="BankaAdi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="FirmaId" Type="Int32" />
+    <NavigationProperty Name="Firmalar" Relationship="iKartvizitModel.FK_Banka_Firmalar" FromRole="Banka" ToRole="Firmalar" />
+  </EntityType>
+  <EntityType Name="Ekstra">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirmaId" Type="Int32" />
+    <Property Name="Baslik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Resim" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="Firmalar" Relationship="iKartvizitModel.FK_Ekstra_Firmalar" FromRole="Ekstra" ToRole="Firmalar" />
+  </EntityType>
+  <EntityType Name="Firmalar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirmaAd" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="QR" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AspNetUsers" Relationship="iKartvizitModel.FK_Firmalar_AspNetUsers" FromRole="Firmalar" ToRole="AspNetUsers" />
+    <NavigationProperty Name="Banka" Relationship="iKartvizitModel.FK_Banka_Firmalar" FromRole="Firmalar" ToRole="Banka" />
+    <NavigationProperty Name="Ekstra" Relationship="iKartvizitModel.FK_Ekstra_Firmalar" FromRole="Firmalar" ToRole="Ekstra" />
+    <NavigationProperty Name="Iletisim" Relationship="iKartvizitModel.FK_Iletisim_Firmalar" FromRole="Firmalar" ToRole="Iletisim" />
+  </EntityType>
+  <EntityType Name="Iletisim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Adres" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="Website" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="Telefon" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="Telefon2" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="FirmaId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Firmalar" Relationship="iKartvizitModel.FK_Iletisim_Firmalar" FromRole="Iletisim" ToRole="Firmalar" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="iKartvizitModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="iKartvizitModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="iKartvizitModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="iKartvizitModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Firmalar_AspNetUsers">
+    <End Type="iKartvizitModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1" />
+    <End Type="iKartvizitModel.Firmalar" Role="Firmalar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Firmalar">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Banka_Firmalar">
+    <End Type="iKartvizitModel.Firmalar" Role="Firmalar" Multiplicity="0..1" />
+    <End Type="iKartvizitModel.Banka" Role="Banka" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Firmalar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Banka">
+        <PropertyRef Name="FirmaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Ekstra_Firmalar">
+    <End Type="iKartvizitModel.Firmalar" Role="Firmalar" Multiplicity="0..1" />
+    <End Type="iKartvizitModel.Ekstra" Role="Ekstra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Firmalar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Ekstra">
+        <PropertyRef Name="FirmaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Iletisim_Firmalar">
+    <End Type="iKartvizitModel.Firmalar" Role="Firmalar" Multiplicity="1" />
+    <End Type="iKartvizitModel.Iletisim" Role="Iletisim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Firmalar">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Iletisim">
+        <PropertyRef Name="FirmaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="iKartvizitModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+    <End Type="iKartvizitModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+  </Association>
+</Schema>

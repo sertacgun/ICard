@@ -1,0 +1,47 @@
+﻿@model EntityLayer.Firmalar
+
+@{
+    ViewBag.Title = "Yeni Firma Ekle";
+}
+
+<h2>Yeni Firma Ekle</h2>
+
+
+@using (Html.BeginForm("Create", "Firmalar", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirmaAd, "Firma Adı", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FirmaAd, new { htmlAttributes = new { @required = "required", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.FirmaAd, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UserId, "Kullanıcı", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <select class="form-control" name="UserId">
+                @foreach (AspNetUsers item in ViewBag.users)
+                {
+                    <option value="@item.Id">@item.UserName</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Gönder" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Geri Dön", "Index")
+</div>

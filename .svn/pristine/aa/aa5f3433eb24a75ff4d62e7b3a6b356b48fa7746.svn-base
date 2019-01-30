@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fa2c46d46e5c4ae98b8d7dc2f7969bb2" Name="Diagram1">
+        <EntityTypeShape EntityType="iKartvizitModel.C__MigrationHistory" PointX="5.75" PointY="0.75" Width="1.5" />
+        <EntityTypeShape EntityType="iKartvizitModel.AspNetRoles" PointX="8.75" PointY="2.5" Width="1.5" />
+        <EntityTypeShape EntityType="iKartvizitModel.AspNetUserClaims" PointX="13.25" PointY="1" Width="1.5" />
+        <EntityTypeShape EntityType="iKartvizitModel.AspNetUserLogins" PointX="13.25" PointY="3.75" Width="1.5" />
+        <EntityTypeShape EntityType="iKartvizitModel.AspNetUsers" PointX="11" PointY="1.375" Width="1.5" />
+        <EntityTypeShape EntityType="iKartvizitModel.Banka" PointX="3" PointY="12.25" Width="1.5" />
+        <EntityTypeShape EntityType="iKartvizitModel.Ekstra" PointX="3" PointY="3" Width="1.5" />
+        <EntityTypeShape EntityType="iKartvizitModel.Firmalar" PointX="0.75" PointY="6" Width="1.5" />
+        <EntityTypeShape EntityType="iKartvizitModel.Iletisim" PointX="3" PointY="9.25" Width="1.5" />
+        <EntityTypeShape EntityType="iKartvizitModel.Kullanicilar" PointX="6" PointY="5.75" Width="1.5" />
+        <EntityTypeShape EntityType="iKartvizitModel.sysdiagrams" PointX="8.75" PointY="6.75" Width="1.5" />
+        <EntityTypeShape EntityType="iKartvizitModel.Yetki" PointX="3.75" PointY="6.125" Width="1.5" />
+        <AssociationConnector Association="iKartvizitModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="iKartvizitModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="iKartvizitModel.FK_Banka_Firmalar" />
+        <AssociationConnector Association="iKartvizitModel.FK_Ekstra_Firmalar" />
+        <AssociationConnector Association="iKartvizitModel.FK_Iletisim_Firmalar" />
+        <AssociationConnector Association="iKartvizitModel.FK_Kullanicilar_Firmalar" />
+        <AssociationConnector Association="iKartvizitModel.FK_Kullanicilar_Yetki" />
+        <AssociationConnector Association="iKartvizitModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

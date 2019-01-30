@@ -1,0 +1,51 @@
+﻿@model List<Firmalar>
+@{
+    ViewBag.Title = "Firmalar";
+}
+<style>
+    .pasif {
+        background-color:rgba(220, 118, 21, 0.75);
+    }
+</style>
+<h2>Firmalar</h2>
+
+<a href="@Url.Action("Create","Firmalar")" class="btn btn-success">Firma Ekle</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Firma Adı</th>
+            <th>Kullanıcı</th>
+            <th>Aktif</th>
+            <th>Oluşturulma Tarihi</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="@(item.IsActive ? "" : "pasif")">
+                <td>@item.FirmaAd</td>
+                <td>@item.AspNetUsers.UserName</td>
+                <td>@Html.Raw(item.IsActive ? "Aktif" : "Pasif")</td>
+                <td>@item.CreateDate.ToString("dd-MM-yyyy")</td>
+                <td>
+                    <a href="@Url.Action("Ekstra","Firmalar",new { id = item.Id })" class="btn btn-default">Ekstra</a>
+                    <a href="@Url.Action("Banka","Firmalar",new { id = item.Id })" class="btn btn-default">Banka</a>
+                    <a href="@Url.Action("Contact","Firmalar",new { id = item.Id })" class="btn btn-default">Contact</a>
+                    <a href="@Url.Action("Edit","Firmalar",new { id = item.Id })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("Delete","Firmalar",new { id = item.Id })" class="btn btn-danger">Delete</a>
+
+                    @if (item.IsActive)
+    {
+                <a href="@Url.Action("Passive", "Firmalar", new { id = item.Id })" class="btn btn-info">A/P</a>
+}
+else
+{
+                <a href="@Url.Action("Active", "Firmalar", new { id = item.Id })" class="btn btn-primary">A/P</a>
+}
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

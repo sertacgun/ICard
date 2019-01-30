@@ -1,0 +1,143 @@
+﻿@model EntityLayer.Firmalar
+
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="~/Scripts/QR/qrcode.js"></script>
+    <script src="~/Scripts/QR/qrcode.min.js"></script>
+    <script src="~/Scripts/QR/jquery.min.js"></script>
+</head>
+
+<style>
+    #qrcode {
+        padding-top : 20px;
+    }
+
+</style>
+<div id="qrcode"></div>
+
+
+<script type="text/javascript">
+    new QRCode(document.getElementById("qrcode"), "@Html.DisplayFor(model => model.QR)");
+</script>
+
+<div>
+    <h2>Firma Bilgileri</h2>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirmaAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirmaAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUsers.Email)
+        </dd>
+
+    </dl>
+</div>
+
+<div class="container">
+    <h2>Firma Detayları</h2>
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Banka Bilgileri</a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse in">
+                <div class="panel-body">
+
+                    @foreach (var item in Model.Banka)
+                    {
+
+                        <h4>@item.BankaAdi</h4>
+                        <ul>
+                            <li>İBAN :@item.Iban</li>
+                            <li>Sube Kodu :@item.SubeKodu</li>
+                        </ul>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">İletişim Bilgileri</a>
+                </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body">
+
+                    @{int i = 1;}
+                    @foreach (var item in Model.Iletisim)
+                    {
+                        <h4>@i .İletişim Bilgileri</h4>
+                        <ul>
+                            <li>Telefon1 :@item.Telefon</li>
+                            <li>Telefon2 :@item.Telefon2</li>
+                            <li>Website :@item.Website</li>
+                            <li>Adres :@item.Adres</li>
+                        </ul>
+                        i++;
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Eksta Bilgiler</a>
+                </h4>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse">
+                <div class="panel-body">
+                    @foreach (var item in Model.Ekstra)
+                    {
+                        <h4>@item.Baslik</h4>
+                        <ul>
+                            <li>Açıklama :@item.Aciklama</li>
+                            <li>Resim :@item.Resim</li>
+                        </ul>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

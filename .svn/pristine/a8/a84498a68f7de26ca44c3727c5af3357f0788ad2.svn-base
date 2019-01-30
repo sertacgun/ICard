@@ -1,0 +1,145 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using EntityLayer;
+using Microsoft.AspNet.Identity;
+
+namespace AdminLayer.Controllers
+{
+    public class FirmalarController : BaseController
+    {
+        public ActionResult Index()
+        {
+            List<Firmalar> r = new List<Firmalar>();
+            if (User.IsInRole("Admin"))
+            {
+                r = db.Firmalar.OrderByDescending(x => x.IsActive).ToList();
+            }
+            else{
+                var UId = User.Identity.GetUserId();
+                r = db.Firmalar.Where(x => x.UserId == UId).OrderByDescending(x => x.IsActive).ToList();
+                // r = db.Firmalar.Where(x=>x.UserId == User.Identity.GetUserId()).OrderByDescending(x => x.IsActive).ToList();
+            }
+            return View(r);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Create() {
+            ViewBag.users = db.AspNetUsers.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Firmalar f) {
+
+            string qr = Guid.NewGuid().ToString();
+
+            db.Firmalar.Add(new Firmalar
+            {
+                FirmaAd = f.FirmaAd,
+                IsActive = true,
+                QR = qr,
+                CreateDate = DateTime.Now,
+                UserId = f.UserId
+            });
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id) {
+            ViewBag.users = db.AspNetUsers.ToList();
+            Firmalar f = db.Firmalar.Find(id);
+            return View(f);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Firmalar f) {
+            Firmalar oldF = db.Firmalar.Find(f.Id);
+            oldF.FirmaAd = f.FirmaAd;
+            oldF.UserId = f.UserId;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Delete(int id) {
+            db.Firmalar.Remove(db.Firmalar.Find(id));
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Active(int id) {
+            Firmalar f = db.Firmalar.Find(id);
+            f.IsActive = true;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Passive(int id)
+        {
+            Firmalar f = db.Firmalar.Find(id);
+            f.IsActive = false;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Contact(int id)
+        {
+            Firmalar f = db.Firmalar.Find(id);
+
+            return View(f.Iletisim);
+        }
+
+
+        public ActionResult EditContact(int id)
+        {
+            Iletisim f = db.Iletisim.Find(id);
+            return View(f);
+        }
+
+        [HttpPost]
+        public ActionResult EditContact(Iletisim I)
+        {
+            Iletisim oldI = db.Iletisim.Find(I.Id);
+            oldI.Adres = I.Adres;
+            oldI.Telefon = I.Telefon;
+            oldI.Telefon2 = I.Telefon2;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult DeleteContact(int id)
+        {
+            db.Iletisim.Remove(db.Iletisim.Find(id));
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult CreateContact()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateContact(Iletisim I)
+        {
+            db.Iletisim.Add(new Iletisim
+            {
+                Adres = I.Adres,
+                Website = I.Website,
+                Telefon = I.Telefon,
+                Telefon2 = I.Telefon2,
+                Id = I.Id,
+                FirmaId = I.FirmaId
+            });
+
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
+    }
+
+}

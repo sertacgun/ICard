@@ -1,0 +1,31 @@
+﻿@model IEnumerable<EntityLayer.Ekstra>
+@{
+    ViewBag.Title = "Ekstra";
+}
+
+<h2>Ekstra</h2>
+<a href="@Url.Action("CreateEkstra", "Firmalar", new {id = Convert.ToInt32(TempData["FirmaId"])})" class="btn btn-success">Ekstra Ekle</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Başlık</th>
+            <th>Açıklama</th>
+            <th>Resim</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Baslik</td>
+                <th>@item.Aciklama</th>
+                <td>@item.Resim</td>
+                <td>
+                    <a href="@Url.Action("EditEkstra","Firmalar",new { id = item.Id })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("DeleteEkstra","Firmalar",new { id = item.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

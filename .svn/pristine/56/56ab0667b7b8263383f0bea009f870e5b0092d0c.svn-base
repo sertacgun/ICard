@@ -1,0 +1,34 @@
+﻿@model IEnumerable<EntityLayer.Iletisim>
+
+@{
+    ViewBag.Title = "Contact";
+}
+
+<h2>Contact</h2>
+<a href="@Url.Action("CreateContact","Firmalar")" class="btn btn-success">Contact Ekle</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Adres</th>
+                <th>Web Site</th>
+                <th>Telefon</th>
+                <th>Telefon2</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Adres</td>
+                <th>@item.Website</th>
+                <td>@item.Telefon</td>
+                <td>@item.Telefon2</td>
+                <td>
+                    <a href="@Url.Action("EditContact","Firmalar",new { id = item.Id })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("DeleteContact","Firmalar",new { id = item.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>

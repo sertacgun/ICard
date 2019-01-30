@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="iKartvizitEntities-Web.config Connection String" description="iKartvizitEntities Veritabanına erişmek için uygulama tarafından web.config'de kullanılan Bağlantı Dizesi." defaultValue="metadata=res://*/ICardEntity.csdl|res://*/ICardEntity.ssdl|res://*/ICardEntity.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=178.210.179.126,4236;initial catalog=iKartvizit;persist security info=True;user id=icard;password=icard123**??;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\MSGUN\\source\\repos\\ICard\\AdminLayer\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='iKartvizitEntities']/@connectionString" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Veritabanına erişmek için uygulama tarafından web.config'de kullanılan Bağlantı Dizesi." defaultValue="Data Source=178.210.179.126,4236;Initial Catalog=iKartvizit;Integrated Security=False;User ID=icard;Password=icard123**??" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\MSGUN\\source\\repos\\ICard\\AdminLayer\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

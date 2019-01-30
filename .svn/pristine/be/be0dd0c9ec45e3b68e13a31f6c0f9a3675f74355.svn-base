@@ -1,0 +1,23 @@
+﻿@model List<Banka>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Banka Adı</th>
+            <th>IBAN</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.BankaAdi</td>
+            <td>@item.Iban</td>
+        </tr>
+        }
+    </tbody>
+    
+</table>

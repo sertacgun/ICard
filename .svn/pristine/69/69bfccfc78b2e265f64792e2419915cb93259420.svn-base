@@ -1,0 +1,68 @@
+﻿using EntityLayer;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AdminLayer.Controllers
+{
+    public class HomeController : BaseController
+    {
+        
+        [HttpGet]
+        public ActionResult KayitOl()
+        {
+            ViewBag.Message = "Kayıt sayfası";
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult KayitOl(Kullanicilar kullanicilar)
+        {
+            var DbKontrol = db.Kullanicilar;
+            bool kayitlimi = false;
+
+            foreach (var x in DbKontrol)
+            {
+                if (x.Eposta == kullanicilar.Eposta)
+                    kayitlimi = true;
+            }
+
+            if (kayitlimi == false)
+            {
+                ViewBag.Kayitlimi = false;
+                db.Kullanicilar.Add(kullanicilar);
+                db.SaveChanges();
+            }
+            else
+                ViewBag.Kayitlimi = true;
+
+            return View();
+        }
+
+        public ActionResult Index()
+        {
+            var r = db.Banka.ToList();
+            return View(r);
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        
+    }
+}

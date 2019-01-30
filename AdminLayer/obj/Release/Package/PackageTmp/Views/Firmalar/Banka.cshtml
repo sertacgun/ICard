@@ -1,0 +1,33 @@
+﻿@model IEnumerable<EntityLayer.Banka>
+
+@{
+    ViewBag.Title = "Banka";
+}
+
+<h2>Banka</h2>
+
+<a href="@Url.Action("CreateBanka","Firmalar",new {id = Convert.ToInt32(TempData["FirmaId"])})" class="btn btn-success">Banka Ekle</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Iban</th>
+            <th>Banka Adı</th>
+            <th>Sube Kodu</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Iban</td>
+                <th>@item.BankaAdi</th>
+                <td>@item.SubeKodu</td>
+                <td>
+                    <a href="@Url.Action("EditBanka","Firmalar",new { id = item.Id })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("DeleteBanka","Firmalar",new { id = item.Id })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

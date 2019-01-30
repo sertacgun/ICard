@@ -1,0 +1,8 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>Ana Sayfa</h1>
+
+<a href="@Url.Action("Index","Firmalar")" class="btn btn-success">Firmalara Git</a>

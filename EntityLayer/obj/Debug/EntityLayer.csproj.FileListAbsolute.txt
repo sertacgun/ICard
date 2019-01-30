@@ -1,0 +1,10 @@
+C:\Users\MSGUN\source\repos\ICard\EntityLayer\bin\Debug\EntityLayer.dll.config
+C:\Users\MSGUN\source\repos\ICard\EntityLayer\bin\Debug\EntityLayer.dll
+C:\Users\MSGUN\source\repos\ICard\EntityLayer\bin\Debug\EntityLayer.pdb
+C:\Users\MSGUN\source\repos\ICard\EntityLayer\bin\Debug\EntityFramework.dll
+C:\Users\MSGUN\source\repos\ICard\EntityLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\MSGUN\source\repos\ICard\EntityLayer\bin\Debug\EntityFramework.xml
+C:\Users\MSGUN\source\repos\ICard\EntityLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\MSGUN\source\repos\ICard\EntityLayer\obj\Debug\EntityLayer.csproj.CoreCompileInputs.cache
+C:\Users\MSGUN\source\repos\ICard\EntityLayer\obj\Debug\EntityLayer.dll
+C:\Users\MSGUN\source\repos\ICard\EntityLayer\obj\Debug\EntityLayer.pdb
